@@ -1,0 +1,17 @@
+apt:
+        image: ubuntu
+        volumes:
+            - ../pass:/ubuntu
+        command: [sh, -c, "mkdir /ubuntu"]      
+        command: [sh, -c, "touch /ubuntu/ubuntu_`date +%R`.txt"]
+        container_name: ubuntu_test
+yum:
+        #build: '/root/yum'
+        image: centos:latest
+        volumes:
+            - ../pass:/centos
+        command: [sh, -c, "mkdir /centos"]
+        command: [sh, -c, "yum -y install apache2 createrepo yum-utils rsync && yum -y update && yum clean all"]
+        command: [sh, -c, "touch /centos/centos_`date +%R`.txt"]
+        container_name: centos_test
+
